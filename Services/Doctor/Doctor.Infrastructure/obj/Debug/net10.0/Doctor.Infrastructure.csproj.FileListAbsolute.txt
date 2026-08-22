@@ -1,0 +1,4 @@
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Infrastructure\obj\Debug\net10.0\Doctor.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Infrastructure\obj\Debug\net10.0\Doctor.Infrastructure.AssemblyInfoInputs.cache
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Infrastructure\obj\Debug\net10.0\Doctor.Infrastructure.AssemblyInfo.cs
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Infrastructure\obj\Debug\net10.0\Doctor.Infrastructure.csproj.CoreCompileInputs.cache

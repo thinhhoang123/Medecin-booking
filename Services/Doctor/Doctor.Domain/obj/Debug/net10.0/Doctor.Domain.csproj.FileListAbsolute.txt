@@ -1,0 +1,11 @@
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.AssemblyInfoInputs.cache
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.AssemblyInfo.cs
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.csproj.CoreCompileInputs.cache
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.deps.json
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.dll
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.pdb
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.dll
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\refint\Doctor.Domain.dll
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.pdb
+D:\Code\medecin\Medecin\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\ref\Doctor.Domain.dll

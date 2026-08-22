@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Services/" />
+  <Folder Name="/Services/Doctor/">
+    <Project Path="Services/Doctor/Doctor.Api/Doctor.Api.csproj" Id="1a95e5fa-d360-432c-9d67-5cbb4187b39e" />
+    <Project Path="Services/Doctor/Doctor.Application/Doctor.Application.csproj" Id="c20632c7-0fa8-4382-b33b-814fd22b5b8b" />
+    <Project Path="Services/Doctor/Doctor.Domain/Doctor.Domain.csproj" Id="cac5cea9-28d5-4cf7-a016-943043d6c698" />
+    <Project Path="Services/Doctor/Doctor.Infrastructure/Doctor.Infrastructure.csproj" Id="ed01d8c9-2434-4ab2-8e98-2c6a5bbab30b" />
+  </Folder>
+</Solution>

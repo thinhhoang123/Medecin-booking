@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "UPGtMJPC4l8=",
+  "success": true,
+  "projectFilePath": "D:\\Code\\medecin\\Medecin\\Services\\Doctor\\Doctor.Api\\Doctor.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hgthinh\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.11\\microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "C:\\Users\\hgthinh\\.nuget\\packages\\microsoft.openapi\\2.7.5\\microsoft.openapi.2.7.5.nupkg.sha512",
+    "C:\\Users\\hgthinh\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\10.2.3\\swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

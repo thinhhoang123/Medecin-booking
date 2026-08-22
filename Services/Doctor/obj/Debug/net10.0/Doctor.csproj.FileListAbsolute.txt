@@ -1,0 +1,8 @@
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.csproj.AssemblyReference.cache
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\rpswa.dswa.cache.json
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.AssemblyInfoInputs.cache
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.AssemblyInfo.cs
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.csproj.CoreCompileInputs.cache
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.MvcApplicationPartsAssemblyInfo.cs
+D:\Code\medecin\Medecin\Services\Doctor\obj\Debug\net10.0\Doctor.MvcApplicationPartsAssemblyInfo.cache

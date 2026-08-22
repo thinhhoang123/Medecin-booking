@@ -1,4 +1,5 @@
 ﻿using Doctor.Application.DTOs;
+using Doctor.Domain.ValueObjects;
 
 namespace Doctor.Application.Interfaces
 {
@@ -16,7 +17,7 @@ namespace Doctor.Application.Interfaces
         Task<bool> DoctorExistsAsync(int id);
 
         // Search & Filter
-        Task<IEnumerable<DoctorDto>> SearchDoctorsAsync(DoctorSearchDto searchDto);
+        Task<IEnumerable<DoctorDto>> SearchDoctorsAsync(string searchTerm);
         Task<IEnumerable<DoctorDto>> GetAvailableDoctorsAsync(DateTime date, string? specialization = null);
 
         // Schedules
@@ -27,13 +28,7 @@ namespace Doctor.Application.Interfaces
         Task<IEnumerable<DoctorScheduleDto>> GetActiveSchedulesAsync(int doctorId);
 
         // Availability
-        Task<DoctorAvailabilityDto> GetDoctorAvailabilityAsync(int doctorId, DateTime date);
-        Task<bool> CheckDoctorAvailabilityAsync(int doctorId, DateTime date, TimeSpan startTime, TimeSpan endTime);
-        Task<DoctorStatsDto> GetDoctorStatsAsync();
-
-        // Bulk Operations
-        Task<IEnumerable<DoctorDto>> GetDoctorsWithSchedulesAsync();
-        Task UpdateDoctorAvailabilityAsync(int doctorId, bool isAvailable);
-        Task<IEnumerable<DoctorDto>> GetDoctorsByDepartmentAsync(string department);
+        Task<IEnumerable<TimeSlot>> GetAvailableTimeSlotsAsync(int doctorId, DateTime date);
+        Task<bool> CheckAvailabilityAsync(int doctorId, DateTime date, TimeSpan startTime, TimeSpan endTime);
     }
 }

@@ -1,6 +1,4 @@
-﻿
-
-using Doctor.Domain.Entities;
+﻿using Doctor.Domain.Entities;
 using Doctor.Domain.Enums;
 using Doctor.Domain.ValueObjects;
 

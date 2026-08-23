@@ -3316,31 +3316,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hgthinh\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/thinh/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Api\\Doctor.Api.csproj",
+      "projectUniqueName": "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Api/Doctor.Api.csproj",
       "projectName": "Doctor.Api",
-      "projectPath": "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Api\\Doctor.Api.csproj",
-      "packagesPath": "C:\\Users\\hgthinh\\.nuget\\packages\\",
-      "outputPath": "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Api\\obj\\",
+      "projectPath": "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Api/Doctor.Api.csproj",
+      "packagesPath": "/Users/thinh/.nuget/packages/",
+      "outputPath": "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Api/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\hgthinh\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/thinh/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3348,11 +3341,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Application\\Doctor.Application.csproj": {
-              "projectPath": "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Application\\Doctor.Application.csproj"
+            "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Application/Doctor.Application.csproj": {
+              "projectPath": "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Application/Doctor.Application.csproj"
             },
-            "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Infrastructure\\Doctor.Infrastructure.csproj": {
-              "projectPath": "D:\\Code\\Medecin-booking\\Services\\Doctor\\Doctor.Infrastructure\\Doctor.Infrastructure.csproj"
+            "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Infrastructure/Doctor.Infrastructure.csproj": {
+              "projectPath": "/Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Infrastructure/Doctor.Infrastructure.csproj"
             }
           }
         }
@@ -3420,7 +3413,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.400/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

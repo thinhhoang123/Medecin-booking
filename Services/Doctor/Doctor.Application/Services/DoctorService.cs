@@ -1,17 +1,13 @@
 ﻿using AutoMapper;
 using Doctor.Application.DTOs;
 using Doctor.Application.Interfaces;
+using Doctor.Domain.Entities;
 using Doctor.Domain.Enums;
 using Doctor.Domain.Interfaces;
 using Doctor.Domain.ValueObjects;
-using DoctorService.Application.DTOs;
-using DoctorService.Application.Interfaces;
-using DoctorService.Domain.Entities;
-using DoctorService.Domain.Enums;
-using DoctorService.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace DoctorService.Application.Services
+namespace Doctor.Application.Services
 {
     public class DoctorService : IDoctorService
     {
@@ -71,30 +67,22 @@ namespace DoctorService.Application.Services
         public async Task<DoctorDto> CreateDoctorAsync(CreateDoctorDto doctorDto)
         {
             // Validate email
-            var existingDoctor = await _doctorRepository.GetByEmailAsync(doctorDto.Email);
-            if (existingDoctor != null)
+            if (await _doctorRepository.ExistsByEmailAsync(doctorDto.Email))
                 throw new InvalidOperationException($"Doctor with email {doctorDto.Email} already exists");
-
-            // Validate license number
-            if (!string.IsNullOrEmpty(doctorDto.LicenseNumber))
-            {
-                var existingLicense = await _doctorRepository.GetByLicenseNumberAsync(doctorDto.LicenseNumber);
-                if (existingLicense != null)
-                    throw new InvalidOperationException($"Doctor with license number {doctorDto.LicenseNumber} already exists");
-            }
 
             // Parse specialization
             if (!Enum.TryParse<Specialization>(doctorDto.Specialization, true, out var specialization))
                 throw new InvalidOperationException($"Invalid specialization: {doctorDto.Specialization}");
 
-            // Create domain entity
+            // Create contact info
             var contactInfo = new ContactInfo(
                 doctorDto.Email,
                 doctorDto.PhoneNumber,
                 doctorDto.MobileNumber,
                 doctorDto.Address);
 
-            var doctor = new Doctor(
+            // Create doctor
+            var doctor = new Domain.Entities.Doctor(
                 doctorDto.FirstName,
                 doctorDto.LastName,
                 specialization,
@@ -110,18 +98,26 @@ namespace DoctorService.Application.Services
             {
                 foreach (var scheduleDto in doctorDto.Schedules)
                 {
-                    var schedule = CreateScheduleFromDto(doctor.Id, scheduleDto);
+                    if (!Enum.TryParse<DayOfWeek>(scheduleDto.DayOfWeek, true, out var dayOfWeek))
+                        throw new InvalidOperationException($"Invalid day of week: {scheduleDto.DayOfWeek}");
+
+                    var workingHours = new WorkingHours(scheduleDto.StartTime, scheduleDto.EndTime);
+                    var schedule = new DoctorSchedule(
+                        doctor.Id,
+                        dayOfWeek,
+                        workingHours,
+                        scheduleDto.SlotDurationInMinutes,
+                        scheduleDto.ValidFrom,
+                        scheduleDto.ValidTo);
+
                     doctor.AddSchedule(schedule);
                 }
             }
 
-            // Save
             await _doctorRepository.AddAsync(doctor);
             await _unitOfWork.SaveChangesAsync();
 
-            _logger.LogInformation($"Doctor created: {doctor.Id} - {doctor.Email}");
-
-            // Clear domain events
+            _logger.LogInformation($"Doctor created: {doctor.Id}");
             doctor.ClearDomainEvents();
 
             return _mapper.Map<DoctorDto>(doctor);
@@ -177,8 +173,7 @@ namespace DoctorService.Application.Services
 
             await _unitOfWork.SaveChangesAsync();
 
-            _logger.LogInformation($"Doctor updated: {doctor.Id} - {doctor.Email}");
-
+            _logger.LogInformation($"Doctor updated: {doctor.Id}");
             doctor.ClearDomainEvents();
 
             return _mapper.Map<DoctorDto>(doctor);
@@ -193,8 +188,7 @@ namespace DoctorService.Application.Services
             doctor.UpdateStatus(DoctorStatus.Inactive);
             await _unitOfWork.SaveChangesAsync();
 
-            _logger.LogInformation($"Doctor deactivated: {doctor.Id} - {doctor.Email}");
-
+            _logger.LogInformation($"Doctor deactivated: {doctor.Id}");
             doctor.ClearDomainEvents();
 
             return true;
@@ -202,43 +196,19 @@ namespace DoctorService.Application.Services
 
         public async Task<bool> DoctorExistsAsync(int id)
         {
-            var doctor = await _doctorRepository.GetByIdAsync(id);
-            return doctor != null && doctor.Status == DoctorStatus.Active;
+            return await _doctorRepository.ExistsAsync(d => d.Id == id && d.Status == DoctorStatus.Active);
         }
 
-        public async Task<IEnumerable<DoctorDto>> SearchDoctorsAsync(DoctorSearchDto searchDto)
+        public async Task<IEnumerable<DoctorDto>> SearchDoctorsAsync(string searchTerm)
         {
-            var doctors = await _doctorRepository.SearchDoctorsAsync(searchDto.SearchTerm ?? string.Empty);
-
-            // Filter by specialization
-            if (!string.IsNullOrEmpty(searchDto.Specialization))
-            {
-                if (Enum.TryParse<Specialization>(searchDto.Specialization, true, out var spec))
-                {
-                    doctors = doctors.Where(d => d.Specialization == spec);
-                }
-            }
-
-            // Filter by availability
-            if (searchDto.AvailableDate.HasValue)
-            {
-                var availableDoctors = await _doctorRepository.GetAvailableDoctorsAsync(
-                    searchDto.AvailableDate.Value);
-                doctors = doctors.Where(d => availableDoctors.Any(ad => ad.Id == d.Id));
-            }
-
-            // Apply pagination
-            var pagedDoctors = doctors
-                .Skip((searchDto.PageNumber - 1) * searchDto.PageSize)
-                .Take(searchDto.PageSize);
-
-            return _mapper.Map<IEnumerable<DoctorDto>>(pagedDoctors);
+            var doctors = await _doctorRepository.SearchDoctorsAsync(searchTerm);
+            return _mapper.Map<IEnumerable<DoctorDto>>(doctors);
         }
 
         public async Task<IEnumerable<DoctorDto>> GetAvailableDoctorsAsync(DateTime date, string? specialization = null)
         {
-            var specializationEnum = string.IsNullOrEmpty(specialization)
-                ? (Specialization?)null
+            var specializationEnum = string.IsNullOrEmpty(specialization) 
+                ? (Specialization?)null 
                 : Enum.Parse<Specialization>(specialization, true);
 
             var doctors = await _doctorRepository.GetAvailableDoctorsAsync(date, specializationEnum);
@@ -253,4 +223,111 @@ namespace DoctorService.Application.Services
 
         public async Task<DoctorScheduleDto> AddScheduleAsync(CreateDoctorScheduleDto scheduleDto)
         {
-           
+            if (!Enum.TryParse<DayOfWeek>(scheduleDto.DayOfWeek, true, out var dayOfWeek))
+                throw new InvalidOperationException($"Invalid day of week: {scheduleDto.DayOfWeek}");
+
+            // Check if doctor exists
+            if (!await DoctorExistsAsync(scheduleDto.DoctorId))
+                throw new KeyNotFoundException($"Doctor with ID {scheduleDto.DoctorId} not found");
+
+            // Check for conflicts
+            var hasConflict = await _scheduleRepository.HasScheduleConflictAsync(
+                scheduleDto.DoctorId,
+                dayOfWeek,
+                scheduleDto.StartTime,
+                scheduleDto.EndTime);
+
+            if (hasConflict)
+                throw new InvalidOperationException("Schedule conflict detected");
+
+            var workingHours = new WorkingHours(scheduleDto.StartTime, scheduleDto.EndTime);
+            var schedule = new DoctorSchedule(
+                scheduleDto.DoctorId,
+                dayOfWeek,
+                workingHours,
+                scheduleDto.SlotDurationInMinutes,
+                scheduleDto.ValidFrom,
+                scheduleDto.ValidTo);
+
+            var doctor = await _doctorRepository.GetByIdAsync(scheduleDto.DoctorId);
+            doctor.AddSchedule(schedule);
+
+            await _unitOfWork.SaveChangesAsync();
+
+            _logger.LogInformation($"Schedule added for doctor {scheduleDto.DoctorId}");
+            return _mapper.Map<DoctorScheduleDto>(schedule);
+        }
+
+        public async Task<DoctorScheduleDto> UpdateScheduleAsync(int scheduleId, UpdateDoctorScheduleDto scheduleDto)
+        {
+            var schedule = await _scheduleRepository.GetByIdAsync(scheduleId);
+            if (schedule == null)
+                throw new KeyNotFoundException($"Schedule with ID {scheduleId} not found");
+
+            if (scheduleDto.StartTime.HasValue && scheduleDto.EndTime.HasValue)
+            {
+                var workingHours = new WorkingHours(scheduleDto.StartTime.Value, scheduleDto.EndTime.Value);
+                schedule.UpdateWorkingHours(workingHours);
+            }
+
+            if (scheduleDto.SlotDurationInMinutes.HasValue)
+                schedule.UpdateSlotDuration(scheduleDto.SlotDurationInMinutes.Value);
+
+            if (!string.IsNullOrEmpty(scheduleDto.Status))
+            {
+                if (Enum.TryParse<ScheduleStatus>(scheduleDto.Status, true, out var status))
+                {
+                    if (status == ScheduleStatus.Active)
+                        schedule.Activate();
+                    else
+                        schedule.Deactivate();
+                }
+            }
+
+            if (scheduleDto.ValidFrom.HasValue || scheduleDto.ValidTo.HasValue)
+                schedule.SetValidityPeriod(scheduleDto.ValidFrom, scheduleDto.ValidTo);
+
+            await _unitOfWork.SaveChangesAsync();
+
+            _logger.LogInformation($"Schedule updated: {scheduleId}");
+            return _mapper.Map<DoctorScheduleDto>(schedule);
+        }
+
+        public async Task<bool> RemoveScheduleAsync(int scheduleId)
+        {
+            var schedule = await _scheduleRepository.GetByIdAsync(scheduleId);
+            if (schedule == null)
+                return false;
+
+            schedule.Deactivate();
+            await _unitOfWork.SaveChangesAsync();
+
+            _logger.LogInformation($"Schedule deactivated: {scheduleId}");
+            return true;
+        }
+
+        public async Task<IEnumerable<DoctorScheduleDto>> GetActiveSchedulesAsync(int doctorId)
+        {
+            var schedules = await _scheduleRepository.GetActiveSchedulesAsync(doctorId);
+            return _mapper.Map<IEnumerable<DoctorScheduleDto>>(schedules);
+        }
+
+        public async Task<IEnumerable<TimeSlot>> GetAvailableTimeSlotsAsync(int doctorId, DateTime date)
+        {
+            var doctor = await _doctorRepository.GetByIdAsync(doctorId);
+            if (doctor == null)
+                throw new KeyNotFoundException($"Doctor with ID {doctorId} not found");
+
+            return doctor.GetAvailableTimeSlots(date);
+        }
+
+        public async Task<bool> CheckAvailabilityAsync(int doctorId, DateTime date, TimeSpan startTime, TimeSpan endTime)
+        {
+            var doctor = await _doctorRepository.GetByIdAsync(doctorId);
+            if (doctor == null)
+                return false;
+
+            return doctor.IsAvailableOn(date, startTime, endTime);
+        }
+    }
+}

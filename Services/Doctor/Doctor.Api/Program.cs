@@ -1,4 +1,10 @@
-using Microsoft.Extensions.Options;
+using Doctor.Application.Interfaces;
+using Doctor.Application.Mappings;
+using Doctor.Application.Services;
+using Doctor.Domain.Interfaces;
+using Doctor.Infrastructure.Data;
+using Doctor.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +14,34 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+// Database Context
+builder.Services.AddDbContext<DoctorDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Repositories
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IDoctorScheduleRepository, DoctorScheduleRepository>();
+
+// Unit of Work
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Services
+builder.Services.AddScoped<IDoctorService, DoctorService>();
+
+// AutoMapper
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfile));
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,9 +55,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
+app.UseCors("AllowAll");
+// app.UseAuthorization();
 app.MapControllers();
 
 app.Run();

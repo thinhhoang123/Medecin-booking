@@ -1,8 +1,8 @@
 ﻿using Doctor.Domain.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using Doctor.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Doctor.Infrastructure.Repositories
 {
@@ -23,7 +23,6 @@ namespace Doctor.Infrastructure.Repositories
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        // ============ Basic CRUD Operations ============
 
         public virtual async Task<T?> GetByIdAsync(int id)
         {
@@ -122,7 +121,6 @@ namespace Doctor.Infrastructure.Repositories
             }
         }
 
-        // ============ Soft Delete Operations ============
 
         public virtual async Task SoftDeleteAsync(int id, string? deletedBy = null)
         {
@@ -227,8 +225,6 @@ namespace Doctor.Infrastructure.Repositories
                 throw;
             }
         }
-
-        // ============ Bulk Operations ============
 
         public virtual async Task AddRangeAsync(IEnumerable<T> entities)
         {
@@ -339,7 +335,6 @@ namespace Doctor.Infrastructure.Repositories
             }
         }
 
-        // ============ Save Operations ============
 
         public virtual async Task<int> SaveChangesAsync()
         {

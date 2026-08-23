@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Doctor.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc0dc81309875a4b454bcd5f5fdd1a1ad6c59229")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83a59c6f1c09d838c6d5dc9aec0b97ac43ba8bd4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Doctor.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Doctor.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -293,6 +293,7 @@ D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\staticwebas
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\staticwebassets.development.json
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\swae.build.ex.cache
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\Doctor.Api.csproj.Up2Date
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\Doctor.Api.dll
 D:\Code\Medecin-booking\Services\Doctor\Doctor.Api\obj\Debug\net10.0\refint\Doctor.Api.dll

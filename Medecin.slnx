@@ -6,4 +6,5 @@
     <Project Path="Services/Doctor/Doctor.Domain/Doctor.Domain.csproj" Id="cac5cea9-28d5-4cf7-a016-943043d6c698" />
     <Project Path="Services/Doctor/Doctor.Infrastructure/Doctor.Infrastructure.csproj" Id="ed01d8c9-2434-4ab2-8e98-2c6a5bbab30b" />
   </Folder>
+  <Project Path="BlazorClient/BlazorClient.csproj" Id="1e975b20-77ac-4a4e-917d-9b1353bf75b6" />
 </Solution>

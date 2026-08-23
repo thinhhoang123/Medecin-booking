@@ -8,7 +8,7 @@ namespace Doctor.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class DoctorsController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
@@ -137,7 +137,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<DoctorDto>> CreateDoctor([FromBody] CreateDoctorDto createDto)
         {
             try
@@ -157,7 +157,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<DoctorDto>> UpdateDoctor(int id, [FromBody] UpdateDoctorDto updateDto)
         {
             try
@@ -181,7 +181,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteDoctor(int id)
         {
             try

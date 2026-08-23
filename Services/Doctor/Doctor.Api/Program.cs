@@ -15,8 +15,16 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 // Database Context
+
+// Configure Database with Connection String
 builder.Services.AddDbContext<DoctorDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+        sqlServerOptionsAction: sqlOptions =>
+        {
+            sqlOptions.MigrationsAssembly(typeof(DoctorDbContext).Assembly.FullName);
+            sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null);
+        }));
+
 
 // Repositories
 builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();

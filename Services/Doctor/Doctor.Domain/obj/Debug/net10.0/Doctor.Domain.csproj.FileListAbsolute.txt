@@ -21,3 +21,15 @@ D:/Code/medecin/Medecin/Services/Doctor/Doctor.Domain/obj/Debug/net10.0/ref/Doct
 /Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Domain/obj/Debug/net10.0/refint/Doctor.Domain.dll
 /Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Domain/obj/Debug/net10.0/Doctor.Domain.pdb
 /Users/thinh/Documents/Coding/Medecin-booking/Services/Doctor/Doctor.Domain/obj/Debug/net10.0/ref/Doctor.Domain.dll
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.deps.json
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.dll
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\bin\Debug\net10.0\Doctor.Domain.pdb
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.AssemblyInfoInputs.cache
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.AssemblyInfo.cs
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.csproj.CoreCompileInputs.cache
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.sourcelink.json
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.dll
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\refint\Doctor.Domain.dll
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\Doctor.Domain.pdb
+D:\Code\Medecin-booking\Services\Doctor\Doctor.Domain\obj\Debug\net10.0\ref\Doctor.Domain.dll

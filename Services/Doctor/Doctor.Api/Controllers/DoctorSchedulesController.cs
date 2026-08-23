@@ -7,7 +7,7 @@ namespace Doctor.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class DoctorSchedulesController : ControllerBase
     {
         private readonly IDoctorService _doctorService;
@@ -50,7 +50,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<DoctorScheduleDto>> AddSchedule([FromBody] CreateDoctorScheduleDto scheduleDto)
         {
             try
@@ -74,7 +74,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult<DoctorScheduleDto>> UpdateSchedule(int id, [FromBody] UpdateDoctorScheduleDto scheduleDto)
         {
             try
@@ -94,7 +94,7 @@ namespace Doctor.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<ActionResult> RemoveSchedule(int id)
         {
             try

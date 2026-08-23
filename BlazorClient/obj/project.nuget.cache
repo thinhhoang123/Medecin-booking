@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uHnznNHWOW8=",
+  "dgSpecHash": "PsYapNTbm1c=",
   "success": true,
-  "projectFilePath": "D:\\Code\\Medecin-booking\\BlazorClient\\BlazorClient.csproj",
+  "projectFilePath": "/Users/thinh/Documents/Coding/Medecin-booking/BlazorClient/BlazorClient.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\hgthinh\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.11\\microsoft.aspnetcore.app.internal.assets.10.0.11.nupkg.sha512"
+    "/Users/thinh/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.11/microsoft.aspnetcore.app.internal.assets.10.0.11.nupkg.sha512"
   ],
   "logs": []
 }

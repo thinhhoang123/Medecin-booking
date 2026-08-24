@@ -1,10 +1,19 @@
 using BlazorClient.Components;
+using BlazorClient.Infrastructure.Interfaces;
+using BlazorClient.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+builder.Services.AddScoped<ApiService>();
+builder.Services.AddScoped(sp => new HttpClient 
+{ 
+    BaseAddress = new Uri(builder.Configuration["ApiGatewayUrl"] ?? "http://localhost:5077/") 
+});
+
+builder.Services.AddScoped<IDoctorService, DoctorService>();
 
 var app = builder.Build();
 

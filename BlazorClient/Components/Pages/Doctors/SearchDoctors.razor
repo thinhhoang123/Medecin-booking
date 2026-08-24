@@ -1,0 +1,33 @@
+@page "/doctors/search"
+@page "/doctors"
+@rendermode InteractiveServer
+
+<PageTitle>Search Doctors - Doctor Appointment System</PageTitle>
+
+<h3>SearchDoctors</h3>
+<p>@_name @Count</p>
+<input type="text" @bind="_name"/>
+<button @onclick="UpdateDoctors">Click update</button>
+<button @onclick="UpdateCurrentCounterValue">Click update count</button>
+
+
+@code {
+    [Parameter]
+    public int Count { get; set; }
+    [Parameter]
+    public EventCallback<int> CurrentCounterValueChanged { get; set; }
+    
+    private string _name = "Testing";
+ 
+    private void UpdateDoctors()
+    {
+        _name = "ABC";
+    }
+    
+    async Task UpdateCurrentCounterValue()
+    {
+        Count++;
+        await CurrentCounterValueChanged.InvokeAsync(Count);
+    }
+
+}

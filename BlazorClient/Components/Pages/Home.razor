@@ -9,6 +9,14 @@
 
 <h1>Hello, world!</h1>
 
+@foreach (var doctor in _doctors)
+{
+    <div>
+        <h3>@doctor.FirstName @doctor.LastName</h3>
+        <p>@doctor.Specialization</p>
+    </div>
+}
+
 Welcome to your new app.
 
 @code {
@@ -20,7 +28,7 @@ Welcome to your new app.
 
     // private DoctorSearchResultDto? searchResult;
     private List<string> specializations = new();
-    private List<DoctorDto> _doctorDtos = new();
+    private  List<DoctorDto> _doctors = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -31,11 +39,9 @@ Welcome to your new app.
     {
         try
         {
-        Console.WriteLine(_doctorDtos);
-            
-            var allDoctors = await DoctorService.GetAllDoctorsAsync();
-            _doctorDtos = allDoctors.ToList();
-            Console.WriteLine(_doctorDtos);
+           var allDoctors = await DoctorService.GetAllDoctorsAsync();
+            _doctors = allDoctors.ToList();
+            Console.WriteLine(_doctors);
         }
         catch (Exception ex)
         {

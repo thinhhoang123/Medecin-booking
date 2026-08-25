@@ -15,10 +15,10 @@
     [Parameter]
     public int Count { get; set; }
     [Parameter]
-    public EventCallback<int> CurrentCounterValueChanged { get; set; }
+    public EventCallback<int> CountChanged { get; set; }
     
     private string _name = "Testing";
- 
+    
     private void UpdateDoctors()
     {
         _name = "ABC";
@@ -27,7 +27,9 @@
     async Task UpdateCurrentCounterValue()
     {
         Count++;
-        await CurrentCounterValueChanged.InvokeAsync(Count);
+        await CountChanged.InvokeAsync(Count);
     }
+
+
 
 }

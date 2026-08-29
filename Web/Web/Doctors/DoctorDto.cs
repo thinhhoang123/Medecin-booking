@@ -124,3 +124,21 @@ public class DoctorSearchResultDto
     public int PageSize { get; set; }
     public int TotalPages => (int)Math.Ceiling(TotalCount / (double)PageSize);
 }
+
+public class DoctorSearchDto
+{
+    public string? SearchTerm { get; set; }
+    public string? Specialization { get; set; }
+    public DateTime? AvailableDate { get; set; }
+    public int PageNumber { get; set; } = 1;
+    public int PageSize { get; set; } = 10;
+}
+
+public class DoctorAvailabilityDto
+{
+    public int DoctorId { get; set; }
+    public string DoctorName { get; set; } = string.Empty;
+    public string Specialization { get; set; } = string.Empty;
+    public DateTime Date { get; set; }
+    public List<TimeSlotDto> AvailableSlots { get; set; } = new();
+}
